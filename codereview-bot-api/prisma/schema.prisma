@@ -1,0 +1,58 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id          String   @id @default(cuid())
+  githubId    Int      @unique
+  username    String
+  email       String?
+  avatarUrl   String?
+  githubToken String
+  installations Installation[]
+  createdAt   DateTime @default(now())
+}
+
+model Installation {
+  id                   String       @id @default(cuid())
+  userId               String
+  user                 User         @relation(fields: [userId], references: [id])
+  githubInstallationId Int          @unique
+  accountLogin         String
+  repositories         Repository[]
+  createdAt            DateTime     @default(now())
+}
+
+model Repository {
+  id             String       @id @default(cuid())
+  installationId String
+  installation   Installation @relation(fields: [installationId], references: [id], onDelete: Cascade)
+  githubRepoId   Int          @unique
+  name           String
+  fullName       String
+  pullRequests   PullRequest[]
+  createdAt      DateTime     @default(now())
+}
+
+model PullRequest {
+  id           String   @id @default(cuid())
+  repositoryId String
+  repository   Repository @relation(fields: [repositoryId], references: [id])
+  prNumber     Int
+  title        String
+  status       String
+  reviews      Review[]
+  createdAt    DateTime @default(now())
+}
+
+model Review {
+  id            String      @id @default(cuid())
+  pullRequestId String
+  pullRequest   PullRequest @relation(fields: [pullRequestId], references: [id])
+  suggestions   Json
+  createdAt     DateTime    @default(now())
+}
