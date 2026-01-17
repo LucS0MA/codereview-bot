@@ -47,7 +47,7 @@ router.get('/callback', async (req, res) => {
     const gitHubTokenData = await getGitHubUser({ code });
     console.log(gitHubTokenData?.data);
     // const token = jwt.sign(user, jwtSecret, { expiresIn: '1h' });
-    res.redirect(`${process.env.FRONTEND_URL}/oauth/callback`);
+    res.redirect(`${process.env.FRONTEND_URL}`);
   } catch (error) {
     res.status(500).json({ error: 'GitHub OAuth failed' });
   }
