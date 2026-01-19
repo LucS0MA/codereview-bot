@@ -27,6 +27,7 @@ services:
     environment:
       - CHOKIDAR_USEPOLLING=true
       - NODE_ENV=development
+      - DATABASE_URL=postgresql://codereview:devpassword123@db:5432/codereview_bot
     healthcheck:
       test: 'curl --fail --request GET --url "http://localhost:4000/api" || exit 1'
       interval: 10s

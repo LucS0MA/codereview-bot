@@ -9,6 +9,6 @@
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true
   },
-  "include": ["src/**/*", "prisma.config.ts"],
+  "include": ["src/**/*", "../prisma.config.tsg.ts"],
   "exclude": ["node_modules"]
 }

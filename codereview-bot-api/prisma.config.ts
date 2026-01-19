@@ -7,6 +7,6 @@ export default defineConfig({
     path: "prisma/migrations",
   },
   datasource: {
-    url: "postgresql://codereview:devpassword123@localhost:5432/codereview_bot",
+    url: "postgresql://codereview:devpassword123@db:5432/codereview_bot",
   },
 });
