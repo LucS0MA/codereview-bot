@@ -6,6 +6,8 @@ app.listen(config.port, () => {
     console.log(`Server running on http://localhost:${config.port}`)
 })
 
+/* Webhooks test */ 
+
 app.post('/api/webhooks/github', (req, res) => {
     console.log('🎯 WEBHOOK REÇU !');
     console.log('Headers', req.headers);
